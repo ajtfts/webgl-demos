@@ -74,6 +74,8 @@ function render() {
 	requestAnimationFrame(render)
 	stats.begin()
 
+	rotateAroundWorldAxis(camera, Y_AXIS, mousex/120)
+	camera.rotateX(mousey/120)
 	console.log(mousex, mousey)
 	mousex = 0, mousey = 0
 
