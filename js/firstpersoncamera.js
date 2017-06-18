@@ -17,9 +17,8 @@ function rotateAroundWorldAxis(object, axis, radians) {
 }
 
 function updatePosition(e) {
-	rotateAroundWorldAxis(camera, Y_AXIS, -e.movementX/1000)
-	camera.rotateX(-e.movementY/1000)
-	console.log(camera.matrix)
+	mousex = -e.movementX
+	mousey = -e.movementY
 }
 
 function lockChangeAlert() {
@@ -75,6 +74,10 @@ function render() {
 	requestAnimationFrame(render)
 	stats.begin()
 
+	console.log(mousex, mousey)
+	mousex = 0, mousey = 0
+
+
 	if (keyState["KeyW"]) {
 		camera.translateZ(-.05)
 	}
@@ -99,20 +102,6 @@ function render() {
 	if (keyState["Space"]) {
 		camera.position.y += .05
 	}
-	if (keyState["ArrowLeft"]) {
-		rotateAroundWorldAxis(camera, Y_AXIS, 0.01)
-	}
-	if (keyState["ArrowRight"]) {
-		rotateAroundWorldAxis(camera, Y_AXIS, -0.01)
-	}
-	if (keyState["ArrowDown"]) {
-		camera.rotateX(-.01)
-	}
-	if (keyState["ArrowUp"]) {
-		camera.rotateX(0.01)
-	}
-
-
 
 	renderer.render(scene, camera)
 	stats.end()
